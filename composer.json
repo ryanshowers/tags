@@ -1,0 +1,15 @@
+{
+    "name": "ryanshowers/laravel-tags",
+    "description": "Tags for Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ryan Showers",
+            "email": "ryanshowers@6gwebdesign.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "ryanshowers/laravel-pages","*"
+    }
+}
