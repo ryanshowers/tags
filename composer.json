@@ -8,6 +8,14 @@
             "email": "ryanshowers@6gwebdesign.com"
         }
     ],
+    "autoload": {
+        "classmap": [
+            "src/database/migrations"
+        ],
+        "psr-4": {
+            "ryanshowers\\Tags\\": "src/"
+        }
+    },
     "minimum-stability": "dev",
     "require": {
         "ryanshowers/pages": "*"
