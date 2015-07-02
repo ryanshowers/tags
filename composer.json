@@ -13,7 +13,7 @@
             "src/database/migrations"
         ],
         "psr-4": {
-            "ryanshowers\\Tags\\": "src/"
+            "Ryanshowers\\Tags\\": "src/"
         }
     },
     "minimum-stability": "dev",
