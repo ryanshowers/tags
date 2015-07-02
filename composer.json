@@ -1,5 +1,5 @@
 {
-    "name": "ryanshowers/laravel-tags",
+    "name": "ryanshowers/tags",
     "description": "Tags for Laravel",
     "license": "MIT",
     "authors": [
@@ -10,6 +10,6 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "ryanshowers/laravel-pages": "*"
+        "ryanshowers/pages": "*"
     }
 }
