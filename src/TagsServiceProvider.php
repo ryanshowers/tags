@@ -26,6 +26,10 @@ class TagsServiceProvider extends ServiceProvider
             __DIR__.'/database/migrations/' => database_path('/migrations')
         ], 'migrations');
         
+        $this->publishes([
+            __DIR__.'/public/' => public_path('vendor/ryanshowers/tags'),
+        ], 'public');
+        
     }
 
     /**

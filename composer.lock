@@ -1,0 +1,57 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "eaf90c8582fa1a7d0496e2c814b2c89f",
+    "packages": [
+        {
+            "name": "ryanshowers/pages",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ryanshowers/pages.git",
+                "reference": "ab3526ce9e347b3f4b2c394ad0853be99e9d8d25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ryanshowers/pages/zipball/ab3526ce9e347b3f4b2c394ad0853be99e9d8d25",
+                "reference": "ab3526ce9e347b3f4b2c394ad0853be99e9d8d25",
+                "shasum": ""
+            },
+            "require": {
+                "ryanshowers/tags": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/database/migrations"
+                ],
+                "psr-4": {
+                    "Ryanshowers\\Pages\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan Showers",
+                    "email": "ryanshowers@6gwebdesign.com"
+                }
+            ],
+            "description": "Laravel page package",
+            "time": "2015-07-02 19:58:39"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

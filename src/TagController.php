@@ -7,19 +7,34 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Ryanshowers\Tags\Tag;
+use Illuminate\Support\Facades\Input;
 
 class TagController extends Controller
 {
+    
+    public function __construct() {
+    	$this->middleware('auth', [
+    	    'except' => ['index', 'show']
+        ]);
+	}
+
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tags = Tag::popular()->paginate(config('tags.pagination'));
-		return view('tags::index', [
-			'tags' => $tags
+		
+		//Do we have a search query?
+		if ($q = Input::get('q')) {
+			$tags = Tag::where('name', 'LIKE', '%'.$q.'%')->paginate(20);
+		} else {
+			$tags = Tag::popular()->paginate(config('tags.pagination'));
+		} 
+		
+		return $request->wantsJson() ? $tags : view('tags::index', [
+			'tags' => $tags,
 		]);
     }
 
@@ -30,7 +45,6 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -38,9 +52,16 @@ class TagController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        $name = strtolower(trim($request->input('name')));
+        $tag = Tag::firstOrCreate([
+            'name' => $name,
+            'slug' => str_slug($name, '-'),
+            'public' => 1
+        ]);
+        
+        return $tag;
     }
 
     /**
@@ -74,9 +95,14 @@ class TagController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        //
+        if ($tag = Tag::where('id', '=', $id)->first()) {
+            $tag->public = $request->input('public');
+            $tag->update();
+            $tag->touch();
+            return $tag;
+        }
     }
 
     /**
