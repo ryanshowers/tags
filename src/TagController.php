@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Ryanshowers\Tags\Tag;
+use Ryanshowers\Pages\Page;
 use Illuminate\Support\Facades\Input;
 
 class TagController extends Controller
@@ -30,7 +31,7 @@ class TagController extends Controller
 		if ($q = Input::get('q')) {
 			$tags = Tag::where('name', 'LIKE', '%'.$q.'%')->paginate(20);
 		} else {
-			$tags = Tag::popular()->paginate(config('tags.pagination'));
+			$tags = Tag::popular()->public()->paginate(config('tags.pagination'));
 		} 
 		
 		return $request->wantsJson() ? $tags : view('tags::index', [
@@ -67,14 +68,24 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  mixed  $tag
+     * @param  mixed  $slug
      * @return Response
      */
     public function show($slug)
     {
-        $tag = Tag::with('pages')->where('slug','=', $slug)->first();
+        /*$tag = Tag::with(['pages' => function($query) {
+            $query->orderBy('title', 'ASC');
+            $query->paginate(5);
+        }])->where('slug','=', $slug)->first();*/
+        
+        $tag = Tag::where('slug', '=', $slug)->first();
+        $pages = Page::whereHas('tags', function($query) use ($tag) {
+            $query->where('id', '=', $tag->id);
+        })->orderBy('title', 'ASC')->paginate(config('tags.pagination'));
+        
 		return view('tags::show', [
-			'tag' => $tag
+			'tag' => $tag,
+			'pages' => $pages
 		]);
     }
 

@@ -22,15 +22,16 @@
 		</div>
 		<div class="row">
 		    <div class="col-xs-12">
-    		    @if ($tag->pages->isEmpty())
+    		    @if ($pages->isEmpty())
     		    <p>{{ trans('tags::messages.empty', ['tag' => $tag->name]) }}</p>
     		    @else
                 <div class="list-group">
-    		    @foreach ($tag->pages as $page)
+    		    @foreach ($pages as $page)
     		        <a href="{!! route(config('pages.route') . '.show', $page->slug); !!}" class="list-group-item">{{ $page->title }}
     		        </a>
                 @endforeach
                 </div>
+                {!! $pages->render() !!}
     		    @endif
 		    </div>
 		</div>
