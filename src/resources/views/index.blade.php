@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 	
 @section('meta_title', trans('tags::messages.index.meta.title'))
 @section('meta_description', trans('tags::messages.index.meta.description'))
