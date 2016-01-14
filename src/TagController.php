@@ -14,7 +14,10 @@ class TagController extends Controller
 {
     
     public function __construct() {
-    	$this->middleware(config('tags.auth_middleware'), [
+        
+        $this->middleware('web');
+        
+    	$this->middleware('auth', [
     	    'except' => ['index', 'show']
         ]);
 	}
